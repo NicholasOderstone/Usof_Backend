@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::resource('products', ProductController::class);
 
 // Public routes
 Route::group(['prefix' => 'auth'], function () {

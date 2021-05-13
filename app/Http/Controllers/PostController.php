@@ -26,11 +26,15 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'author' => 'required',
             'title' => 'required'
         ]);
+        $title = $request->input('title');
+        $content = $request->input('content');
+        $data = ['author' => auth()->user()->name,
+                 'title' => $title,
+                 'content' => $content];
 
-        return Post::create($request->all());
+        return Post::create($data);
         
     }
 
@@ -55,8 +59,15 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        $post->update($request->all());
-        return $post;
+        if ($post->author == auth()->user()->name || auth()->user()->role == 'admin') {
+            $post->update($request->all());
+            return $post;
+        }
+        else {
+            return response()->json([
+                'error' => 'User is not post author'
+            ]);
+        }
     }
 
     /**
@@ -67,6 +78,14 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        return Post::destroy($id);
+        $post = Post::find($id);
+        if ($post->author == auth()->user()->name || auth()->user()->name == 'admin') {
+            return Post::destroy($id);
+        }
+        else {
+            return response()->json([
+                'error' => 'User is not post author'
+            ]);
+        }
     }
 }

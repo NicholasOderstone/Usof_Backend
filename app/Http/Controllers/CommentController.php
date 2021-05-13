@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Comment::all();
     }
 
     /**
@@ -23,15 +22,17 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $post_id)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'price' => 'required'
+            'author' => 'required',
+            'title' => 'required'
         ]);
 
-        return Product::create($request->all());
+        
+
+        return Comment::create($request->all());
+        
     }
 
     /**
@@ -42,7 +43,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
+        return Comment::find($id);
     }
 
     /**
@@ -54,9 +55,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->update($request->all());
-        return $product;
+        $comment = Comment::find($id);
+        $comment->update($request->all());
+        return $comment;
     }
 
     /**
@@ -67,17 +68,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return Product::destroy($id);
-    }
-
-     /**
-     * Search for a name
-     *
-     * @param  str  $name
-     * @return \Illuminate\Http\Response
-     */
-    public function search($name)
-    {
-        return Product::where('name', 'like', '%'.$name.'%')->get();
+        return Comment::destroy($id);
     }
 }

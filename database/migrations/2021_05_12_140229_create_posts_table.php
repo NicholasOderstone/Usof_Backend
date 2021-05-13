@@ -18,8 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('author');
             $table->string('title');
             $table->string('content')->nullable();
-            $table->time("date");
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->timestamps();
         });
     }
 
