@@ -35,7 +35,7 @@ class UserController extends Controller
             'role' => 'required|string'
         ]);
 
-
+        $validated['password'] = bcrypt($validated['password']);
 
         return User::create($validated);
     }

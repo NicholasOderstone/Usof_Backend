@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
+use App\Models\Post;
 
 class CommentController extends Controller
 {
@@ -11,9 +13,9 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($post_id)
     {
-        return Comment::all();
+        return Comment::where('post_id', $post_id)->orderBy('created_at')->get();
     }
 
     /**
@@ -24,14 +26,20 @@ class CommentController extends Controller
      */
     public function store(Request $request, $post_id)
     {
-        $request->validate([
-            'author' => 'required',
-            'title' => 'required'
+
+        $required = $request->validate([
+            'content' => 'required|string|max:512',
         ]);
-
         
+        Post::findOrFail($post_id);
 
-        return Comment::create($request->all());
+        $data = [
+            'author' => auth()->user()->name,
+            'content' => $request->input('content'),
+            'post_id' => $post_id,
+        ];
+
+        return Comment::create($data);
         
     }
 
