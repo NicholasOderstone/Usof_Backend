@@ -61,6 +61,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        if (auth()->user()->role != 'admin' && auth()->user()->name != $user->name) {
+            return response("Access denied!", 401);
+        }
         $user->update($request->all());
         return $user;
     }
@@ -73,6 +76,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::find($id);
+        if (auth()->user()->role != 'admin' && auth()->user()->name != $user->name) {
+            return response("Access denied!", 401);
+        }
         return User::destroy($id);
     }
 }

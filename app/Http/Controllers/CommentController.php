@@ -61,9 +61,12 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $comment_id)
     {
-        $comment = Comment::find($id);
+        $comment = Comment::find($comment_id);
+        if (auth()->user()->role != 'admin' && auth()->user()->name != $comment->author) {
+            return response("Access denied!", 401);
+        }
         $comment->update($request->all());
         return $comment;
     }
@@ -76,6 +79,10 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
+        $comment = Comment::find($comment_id);
+        if (auth()->user()->role != 'admin' && auth()->user()->name != $comment->author) {
+            return response("Access denied!", 401);
+        }
         return Comment::destroy($id);
     }
 }
