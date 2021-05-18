@@ -6,6 +6,7 @@ use App\Http\Controllers\ForgotPasswordController;
 
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 
@@ -62,7 +63,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/{post_id}', [PostController::class, 'destroy']);
 
         Route::post('/{post_id}/comments', [CommentController::class, 'store']);
-
+        Route::get('/{post_id}/categories', [CategoryController::class, 'getAllPostCategories']);
+        
         Route::get('/{post_id}/like', [LikeController::class, 'IndexLikePost']);
         Route::post('/{post_id}/like', [LikeController::class, 'StoreLikePost']);
         Route::delete('/{post_id}/like', [LikeController::class, 'DestroyLikePost']);
@@ -82,6 +84,17 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/{comment_id}/like', [LikeController::class, 'IndexLikeComment']);
         Route::post('/{comment_id}/like', [LikeController::class, 'StoreLikeComment']);
         Route::delete('/{comment_id}/like', [LikeController::class, 'DestroyLikeComment']);
+    });
+
+
+    Route::group(['prefix' => 'categories'], function() {
+        Route::get('', [CategoryController::class, 'index']);
+        Route::get('/{category_id}', [CategoryController::class, 'show']);
+        Route::get('/{category_id}/posts', [CategoryController::class, 'getAllPosts']);
+
+        Route::post('', [CategoryController::class, 'store']);
+        Route::patch('/{category_id}', [CategoryController::class, 'update']);
+        Route::delete('/{category_id}', [CategoryController::class, 'destroy']); 
     });
 });
 

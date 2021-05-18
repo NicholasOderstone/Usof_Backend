@@ -26,16 +26,27 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required'
+            'title' => 'required|string|max:512',
+            'content' => 'required|string',
+            'categories' => 'required|json'
         ]);
         $title = $request->input('title');
         $content = $request->input('content');
-        $data = ['author' => auth()->user()->name,
+        $post_data = ['author' => auth()->user()->name,
                  'title' => $title,
                  'content' => $content];
+        $new_post = Post::create($post_data);
 
-        return Post::create($data);
+        $categories = (json_decode($request->input('categories')))->id; 
+
+
+        foreach ($categories as $category) {
+            if(\App\Models\Category::find($category)) {
+                CategoryController::create($category, $new_post->id);
+            }
+        }
         
+        return $this->show($new_post->id);
     }
 
     /**
@@ -46,7 +57,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return Post::find($id);
+        $result = Post::find($id);
+        $result->categories = CategoryController::getAllPostCategories($id);
+        return $result;
     }
 
     /**

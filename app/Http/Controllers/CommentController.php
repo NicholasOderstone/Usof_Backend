@@ -64,9 +64,20 @@ class CommentController extends Controller
     public function update(Request $request, $comment_id)
     {
         $comment = Comment::find($comment_id);
-        if (auth()->user()->role != 'admin' && auth()->user()->name != $comment->author) {
-            return response("Access denied!", 401);
+        if (!$comment) {
+            return response()->json([
+                'error' => 'No such comment',
+                'message' => 'Comment with id ' .$id . ' not found.'
+            ]);
         }
+        if (auth()->user()->role != 'admin' && auth()->user()->name != $comment->author) {
+            return response()->json([
+                'error' => 'Access denied',
+                'message' => 'You do not have permission for this action.'
+            ]);
+        }
+
+        
         $comment->update($request->all());
         return $comment;
     }
@@ -77,12 +88,25 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($comment_id)
     {
         $comment = Comment::find($comment_id);
-        if (auth()->user()->role != 'admin' && auth()->user()->name != $comment->author) {
-            return response("Access denied!", 401);
+        
+        if (!$comment) {
+            return response()->json([
+                'error' => 'No such comment',
+                'message' => 'Comment with id ' .$id . ' not found.'
+            ]);
         }
-        return Comment::destroy($id);
+
+        if (auth()->user()->role != 'admin' && auth()->user()->name != $comment->author) {
+            return response()->json([
+                'error' => 'Access denied',
+                'message' => 'You do not have permission for this action.'
+            ]);
+        }
+
+        
+        return Comment::destroy($comment_id);
     }
 }
