@@ -11,6 +11,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory, Notifiable, HasApiTokens, CanResetPassword;
 
     /**
