@@ -25,14 +25,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if (!(auth()->user()->role == 'admin')) {
+        if (auth()->user()->is_admin != true) {
             return response("Access denied!", 401);
         }
         $validated = $request->validate([
             'name' => 'required|string',
             'password' => 'required|string|confirmed',
             'email' => 'required|string|unique:users',
-            'role' => 'required|string'
+            'is_admin' => 'required|boolean'
         ]);
 
         $validated['password'] = bcrypt($validated['password']);
@@ -61,11 +61,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        if (auth()->user()->role != 'admin' && auth()->user()->name != $user->name) {
+        if (auth()->user()->is_admin == true || auth()->user()->name == auth()->user()->name) {
+            $user->update($request->all());
+            return $user;
+        }
+        else { 
             return response("Access denied!", 401);
         }
-        $user->update($request->all());
-        return $user;
+        
     }
 
     /**
@@ -77,9 +80,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if (auth()->user()->role != 'admin' && auth()->user()->name != $user->name) {
+        if (auth()->user()->is_admin == true || $user->name == auth()->user()->name) {
+            return User::destroy($id);
+        }
+        else { 
             return response("Access denied!", 401);
         }
-        return User::destroy($id);
     }
 }

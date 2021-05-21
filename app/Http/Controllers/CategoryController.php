@@ -88,7 +88,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (auth()->user()->role != 'admin') {
+        if (auth()->user()->is_admin != true) {
             return response()->json([
                 'error' => 'Access denied',
                 'message' => 'You do not have permission for this action.'
@@ -115,7 +115,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        if (auth()->user()->role != 'admin') {
+        if (auth()->user()->is_admin != true) {
             return response()->json([
                 'error' => 'Access denied',
                 'message' => 'You do not have permission for this action.'

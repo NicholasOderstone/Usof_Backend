@@ -72,7 +72,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        if ($post->author == auth()->user()->name || auth()->user()->role == 'admin') {
+        if ($post->author == auth()->user()->name || auth()->user()->is_admin == true) {
             $post->update($request->all());
             return $post;
         }

@@ -42,7 +42,7 @@ class UserCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('email');
         CRUD::column('password');
-        CRUD::column('role');
+        CRUD::column('is_admin');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -64,7 +64,7 @@ class UserCrudController extends CrudController
         CRUD::field('name');
         CRUD::field('email');
         CRUD::field('password');
-        CRUD::field('role');
+        CRUD::field('is_admin');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

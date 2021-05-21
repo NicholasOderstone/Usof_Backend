@@ -70,7 +70,7 @@ class CommentController extends Controller
                 'message' => 'Comment with id ' .$id . ' not found.'
             ]);
         }
-        if (auth()->user()->role != 'admin' && auth()->user()->name != $comment->author) {
+        if (auth()->user()->is_admin != true && auth()->user()->name != $comment->author) {
             return response()->json([
                 'error' => 'Access denied',
                 'message' => 'You do not have permission for this action.'
@@ -99,7 +99,7 @@ class CommentController extends Controller
             ]);
         }
 
-        if (auth()->user()->role != 'admin' && auth()->user()->name != $comment->author) {
+        if (auth()->user()->is_admin != true && auth()->user()->name != $comment->author) {
             return response()->json([
                 'error' => 'Access denied',
                 'message' => 'You do not have permission for this action.'
