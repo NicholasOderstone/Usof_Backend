@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,9 +16,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        $posts = Post::all();
+        $result = array();
+        foreach ($posts as $post) {
+            $result[] = $this->show($post->id);
+        }
+        return $result;
     }
 
+    static public function getAllUserPosts($user_id) {
+        User::findOrFail($user_id);
+        
+        return Post::where('user_id', $user_id)->get();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -32,7 +44,7 @@ class PostController extends Controller
         ]);
         $title = $request->input('title');
         $content = $request->input('content');
-        $post_data = ['author' => auth()->user()->name,
+        $post_data = ['user_id' => auth()->user()->id,
                  'title' => $title,
                  'content' => $content];
         $new_post = Post::create($post_data);
@@ -49,6 +61,10 @@ class PostController extends Controller
         return $this->show($new_post->id);
     }
 
+    private function getPostRating($id) {
+        return LikeController::PostRating($id);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -57,9 +73,20 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $result = Post::find($id);
-        $result->categories = CategoryController::getAllPostCategories($id);
-        return $result;
+        $post_info = Comment::find($id);
+
+
+        if ($post_info == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such post. Post with id $id not found."
+                ]
+            ], 404); 
+        }
+
+        $post_info->rating = $this->getPostRating($id);
+        $post_info->categories = CategoryController::getAllPostCategories($id);
+        return $post_info;
     }
 
     /**
@@ -72,7 +99,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        if ($post->author == auth()->user()->name || auth()->user()->role == 'admin') {
+        if ($post->user_id == auth()->user()->id || auth()->user()->is_admin == true) {
             $post->update($request->all());
             return $post;
         }
@@ -92,7 +119,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        if ($post->author == auth()->user()->name || auth()->user()->name == 'admin') {
+        if ($post->user_id == auth()->user()->id || auth()->user()->name == 'admin') {
             return Post::destroy($id);
         }
         else {

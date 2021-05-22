@@ -20,6 +20,19 @@ class LikeController extends Controller
                    ->get();
     }
 
+    static public function PostRating($post_id) {
+        return Like::where('entity', 'post')
+                    ->where('entity_id', $post_id)
+                    ->count();
+    }
+
+    static public function CommentRating($comment_id) {
+        return Like::where('entity', 'comment')
+                    ->where('entity_id', $comment_id)
+                    ->count();
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -32,7 +45,7 @@ class LikeController extends Controller
         \App\Models\Post::findOrFail($post_id);
 
         $data = [
-            'author' => auth()->user()->name,
+            'user_id' => auth()->user()->id,
             'entity' => 'post',
             'entity_id' => $post_id
         ];
@@ -47,7 +60,7 @@ class LikeController extends Controller
         \App\Models\Comment::findOrFail($comment_id);
 
         $data = [
-            'author' => auth()->user()->name,
+            'user_id' => auth()->user()->id,
             'entity' => 'comment',
             'entity_id' => $comment_id
         ];
@@ -66,7 +79,7 @@ class LikeController extends Controller
     {
         $like = Like::where('entity', 'post')
                     ->where('entity_id', $post_id)
-                    ->where('author', auth()->user()->name)
+                    ->where('user_id', auth()->user()->id)
                     ->get();
         return Like::destroy($like->id);
     }
@@ -81,7 +94,7 @@ class LikeController extends Controller
     {
         $like = Like::where('entity', 'comment')
                     ->where('entity_id', $comment_id)
-                    ->where('author', auth()->user()->name)
+                    ->where('user_id', auth()->user()->id)
                     ->get();
         return Like::destroy($like->id);
     }

@@ -23,11 +23,9 @@ class CreatePostsTable extends Migration
         });
 
         Schema::table('posts', function ($table) {
-            $table->string('author', 255);
-            $table->foreign('author')->references('name')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            // $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
 
-            // $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

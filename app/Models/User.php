@@ -11,6 +11,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory, Notifiable, HasApiTokens, CanResetPassword;
 
     /**
@@ -22,7 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'is_admin',
+        'image'
     ];
 
     /**
@@ -42,5 +44,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean'
     ];
 }
