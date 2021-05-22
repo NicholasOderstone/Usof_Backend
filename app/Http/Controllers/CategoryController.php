@@ -88,23 +88,29 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (auth()->user()->role != 'admin') {
-            return response()->json([
-                'error' => 'Access denied',
-                'message' => 'You do not have permission for this action.'
-            ]);
-        }
+        if (auth()->user()->is_admin == true) {
 
-        $category = Category::find($id);
-        if (!$category) {
-            return response()->json([
-                'error' => 'No such category',
-                'message' => 'Category with id ' .$id . ' not found.'
-            ]);
+            $category = Category::find($id);
+
+            if ($category) {
+                $category->update($request->all());
+                return $category;
+            }
+            else {
+                return response()->json([
+                    "error" => [
+                        "message"  => "No such category. Category with id $id not found."
+                    ],
+                    400]);
+            }
         }
-        
-        $category->update($request->all());
-        return $category;
+        else {
+            return response()->json([
+                "error" => [
+                    "message"  => "Access denied. You do not have permission for this action."
+                ], 
+                403]);
+        }
     }
 
     /**
@@ -115,20 +121,28 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        if (auth()->user()->role != 'admin') {
-            return response()->json([
-                'error' => 'Access denied',
-                'message' => 'You do not have permission for this action.'
-            ]);
-        }
+        if (auth()->user()->is_admin == true) {
 
-        $category = Category::find($id);
-        if (!$category) {
-            return response()->json([
-                'error' => 'No such category',
-                'message' => 'Category with id ' .$id . ' not found.'
-            ]);
+            $category = Category::find($id);
+
+            if ($category) {
+                return Category::destroy($id);
+            }
+            else {
+                return response()->json([
+                    "error" => [
+                        "message"  => "No such category. Category with id $id not found."
+                    ],
+                    400]);
+            }
         }
-        return Category::destroy($id);
+        else {
+            return response()->json([
+                "error" => [
+                    "message"  => "Access denied. You do not have permission for this action."
+                ], 
+                403]);
+        }
+        
     }
 }

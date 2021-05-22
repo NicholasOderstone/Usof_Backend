@@ -24,13 +24,13 @@ class LikeFactory extends Factory
         $entity = rand(0,1);
         if ($entity == 1) {
             return [
-                'author' => \App\Models\User::find(rand(1, 10))->name,
+                'user_id' => \App\Models\User::find(rand(1, 10))->id,
                 'entity' => 'post',
                 'entity_id' => \App\Models\Post::find(rand(1, 10))->id
             ];
         } else {
             return [
-                'author' => \App\Models\User::find(rand(1, 10))->name,
+                'user_id' => \App\Models\User::find(rand(1, 10))->id,
                 'entity' => 'comment',
                 'entity_id' => \App\Models\Comment::find(rand(1, 30))->id
             ];

@@ -21,8 +21,8 @@ class CreateLikesTable extends Migration
             $table->timestamps();
         });
         Schema::table('likes', function (Blueprint $table) {
-            $table->string('author');
-            $table->foreign('author')->references('name')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

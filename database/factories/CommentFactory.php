@@ -22,7 +22,7 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'author' => \App\Models\User::find(rand(1, 10))->name,
+            'user_id' => \App\Models\User::find(rand(1, 10))->id,
             'content' => $this->faker->text(rand(10, 100)),
             'post_id' => \App\Models\Post::find(rand(1, 10))->id
         ];
