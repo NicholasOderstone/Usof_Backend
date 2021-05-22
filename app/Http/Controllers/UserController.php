@@ -40,6 +40,26 @@ class UserController extends Controller
         return User::create($validated);
     }
 
+
+    private function getUserRating($id) {
+        $user_posts = PostController::getAllUserPosts($id);
+        $user_comments = CommentController::getAllUserComments($id);
+        $user_rating = 0;
+
+        foreach ($user_posts as $post) {
+            $post_rating= LikeController::PostRating($post->id);
+
+            $user_rating += $post_rating;
+        }
+
+        foreach ($user_comments as $comment) {
+            $comment_rating= LikeController::CommentRating($comment->id);
+
+            $user_rating += $comment_rating;
+        }
+
+        return $user_rating;
+    }
     /**
      * Display the specified resource.
      *
@@ -48,7 +68,20 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::find($id);
+        $user_info = User::find($id);
+
+
+        if ($user_info == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such user. User with id $id not found."
+                ]
+            ], 404); 
+        }
+
+        $user_info->rating = $this->getUserRating($id);
+        return $user_info;
+        
     }
 
     /**
@@ -60,15 +93,42 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user_info = User::find($id);
+        if ($user_info == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such user. User with id ' .$id . ' not found."
+                ]
+            ], 404); 
+        }
         if (auth()->user()->is_admin == true || auth()->user()->name == auth()->user()->name) {
             $user->update($request->all());
             return $user;
         }
         else { 
-            return response("Access denied!", 401);
+            return response()->json([
+                "error" => [
+                    "message"  => "Access denied. You do not have permission for this action."
+                ]
+            ], 403);
         }
         
+    }
+
+    public function uploadAvatar(Request $request) {
+        if ($request->file('image')) {
+            $user = User::find(auth()->user()->id);
+            if ($user->image != 'avatars/default.png')
+                \Illuminate\Support\Facades\Storage::delete('public/' . $user->image);
+            $user->update([
+                'image' => $image = $request->file('image')->storeAs('avatars', $user->id . '_' . $request->file('image')->getClientOriginalName(), 'public')
+            ]);
+
+            return response([
+                "message" => "Your avatar was uploaded",
+                "image" => $image
+            ]);
+        }
     }
 
     /**
@@ -79,12 +139,26 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user_info = User::find($id);
+        if ($user_info == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such user. User with id ' .$id . ' not found."
+                ]
+            ], 404); 
+        }
         if (auth()->user()->is_admin == true || $user->name == auth()->user()->name) {
+            App\Http\Controllers\AuthController::logout();
             return User::destroy($id);
         }
         else { 
-            return response("Access denied!", 401);
+            return response()->json([
+                "error" => [
+                    "message"  => "Access denied. You do not have permission for this action."
+                ]
+            ], 403);
         }
+        
+
     }
 }

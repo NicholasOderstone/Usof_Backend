@@ -22,7 +22,7 @@ class AuthController extends Controller
             'password' => bcrypt($fields['password'])
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('usof')->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -43,12 +43,14 @@ class AuthController extends Controller
 
         // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
-            return response([
-                'message' => 'Bad creds'
-            ], 401);
+            return response()->json([
+                    "error" => [
+                      "message"  => "Bad credentials."
+                    ], 403
+            ]);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('usof')->plainTextToken;
 
         $response = [
             'user' => $user,

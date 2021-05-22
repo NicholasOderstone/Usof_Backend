@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -15,7 +16,13 @@ class CommentController extends Controller
      */
     public function index($post_id)
     {
-        return Comment::where('post_id', $post_id)->orderBy('created_at')->get();
+        $comments = Comment::where('post_id', $post_id)->orderBy('created_at')->get();
+
+        $result = array();
+        foreach ($comments as $comment) {
+            $result[] = $this->show($comment->id);
+        }
+        return $result;
     }
 
     /**
@@ -34,13 +41,22 @@ class CommentController extends Controller
         Post::findOrFail($post_id);
 
         $data = [
-            'author' => auth()->user()->name,
+            'user_id' => auth()->user()->id,
             'content' => $request->input('content'),
             'post_id' => $post_id,
         ];
 
         return Comment::create($data);
         
+    }
+    static public function getAllUserComments($user_id) {
+        User::findOrFail($user_id);
+        
+        return Comment::where('user_id', $user_id)->get();
+    }
+
+    private function getCommentRating($id) {
+        return LikeController::CommentRating($id);
     }
 
     /**
@@ -51,7 +67,19 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        return Comment::find($id);
+        $comment_info = Comment::find($id);
+
+
+        if ($comment_info == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such comment. Comment with id $id not found."
+                ]
+            ], 404); 
+        }
+
+        $comment_info->rating = $this->getCommentRating($id);
+        return $comment_info;
     }
 
     /**
@@ -66,15 +94,18 @@ class CommentController extends Controller
         $comment = Comment::find($comment_id);
         if (!$comment) {
             return response()->json([
-                'error' => 'No such comment',
-                'message' => 'Comment with id ' .$id . ' not found.'
+                "error" => [
+                    "message"  => "No such comment. Comment with id ' .$id . ' not found."
+                ],
+                400
             ]);
         }
-        if (auth()->user()->is_admin != true && auth()->user()->name != $comment->author) {
+        if (auth()->user()->is_admin != true && auth()->user()->id != $comment->user_id) {
             return response()->json([
-                'error' => 'Access denied',
-                'message' => 'You do not have permission for this action.'
-            ]);
+                "error" => [
+                    "message"  => "Access denied. You do not have permission for this action."
+                ], 
+                403]);
         }
 
         
@@ -99,7 +130,7 @@ class CommentController extends Controller
             ]);
         }
 
-        if (auth()->user()->is_admin != true && auth()->user()->name != $comment->author) {
+        if (auth()->user()->is_admin != true && auth()->user()->id != $comment->user_id) {
             return response()->json([
                 'error' => 'Access denied',
                 'message' => 'You do not have permission for this action.'
