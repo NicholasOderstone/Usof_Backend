@@ -107,10 +107,14 @@ class CommentController extends Controller
                 ], 
                 403]);
         }
-
+        $input = $request->all();
+        $input = $request->validate([
+            'name' => 'string|unique:users',
+            'email' => 'string|unique:users',
+        ]);
         
-        $comment->update($request->all());
-        return $comment;
+        $user_info->fill($input)->save();
+        return $user_info;
     }
 
     /**

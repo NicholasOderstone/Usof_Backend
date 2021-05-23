@@ -47,7 +47,7 @@ class CategoryController extends Controller
     {
 
         $required = $request->validate([
-            'title' => 'required|string|max:128',
+            'title' => 'required|string|max:128|unique:categories',
         ]);
 
         $data = [
@@ -86,13 +86,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $category_id)
     {
         if (auth()->user()->is_admin == true) {
 
             $category = Category::find($id);
 
             if ($category) {
+                $input = $request->all();
+                $input = $request->validate([
+                    'title' => 'string|unique:categories'
+                ]);
                 $category->update($request->all());
                 return $category;
             }
@@ -111,6 +115,11 @@ class CategoryController extends Controller
                 ], 
                 403]);
         }
+
+        return response()->json([
+            "error" => [
+                "message"  => "Access denied. You do not have permission for this action."
+            ]], 403);
     }
 
     /**
@@ -119,7 +128,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($category_id)
     {
         if (auth()->user()->is_admin == true) {
 
@@ -144,5 +153,9 @@ class CategoryController extends Controller
                 403]);
         }
         
+        return response()->json([
+            "error" => [
+                "message"  => "Access denied. You do not have permission for this action."
+            ]], 403);
     }
 }
