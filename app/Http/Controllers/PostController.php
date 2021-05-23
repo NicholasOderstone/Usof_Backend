@@ -44,9 +44,11 @@ class PostController extends Controller
         ]);
         $title = $request->input('title');
         $content = $request->input('content');
+        
         $post_data = ['user_id' => auth()->user()->id,
                  'title' => $title,
                  'content' => $content];
+        printf(auth()->user()->id);
         $new_post = Post::create($post_data);
 
         $categories = (json_decode($request->input('categories')))->id; 

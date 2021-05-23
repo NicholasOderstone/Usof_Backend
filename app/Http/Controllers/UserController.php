@@ -14,7 +14,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users = User::all();
+        $result = array();
+        foreach ($users as $users) {
+            $result[] = $this->show($users->id);
+        }
+        return $result;
     }
 
     /**
@@ -148,7 +153,7 @@ class UserController extends Controller
             ], 404); 
         }
         if (auth()->user()->is_admin == true || $user->name == auth()->user()->name) {
-            App\Http\Controllers\AuthController::logout();
+            AuthController::logout();
             return User::destroy($id);
         }
         else { 
