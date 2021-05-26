@@ -10,7 +10,7 @@ use App\Models\PasswordResets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\User;
-
+use App\Http\Controllers\MailController;
 class ForgotPasswordController extends Controller
 {
     public function forgot(Request $request) {
@@ -26,13 +26,25 @@ class ForgotPasswordController extends Controller
                     'email' => $user->email,
                     'token' => $token
                 ]);
+            
+            $data = [
+                'title' => 'Forgot Password reset confirmation',
+                'subject' => 'Forgot Password Usof',
+                'body' => URL::current() . '/' . $token,
+            ];
+            // MailController::sendEmail($user->email, $data);
+            
+            // $data = [
+            //     'name' => $user->name,
+            //     'resetLink' => URL::current() . '/' . $token,
+            //     'removeLink' => URL::current() . '/' . $token . '/remove'
+            // ];
 
             $data = [
                 'name' => $user->name,
-                'resetLink' => URL::current() . '/' . $token,
-                'removeLink' => URL::current() . '/' . $token . '/remove'
+                'resetLink' => URL::current() . '/' . $token
             ];
-            Mail::send('forgot', $data, function ($message) use ($user) {
+            Mail::send('emails.ForgotPass', $data, function ($message) use ($user) {
                 $message->to($user->email);
                 $message->subject('Password reset confirmation');
             });
@@ -40,6 +52,7 @@ class ForgotPasswordController extends Controller
             return response([
                 'message' => 'Password reset confirmation sent to ' . $user->email . '!'
             ]);
+            
         } catch (\Exception $exception) {
             return response([
                 'message' => $exception->getMessage()
@@ -47,6 +60,26 @@ class ForgotPasswordController extends Controller
         }
     }
 
+    public function resetView(Request $request, $token) {
+        try {
+            if (!$data = PasswordResets::where('token', $token)->first())
+                return response([
+                    'message' => 'Invalid token!'
+                ], 400);
+
+            if (!$user = User::where('email', $data->email)->first())
+                return response([
+                    'message' => 'User does not exist!'
+                ], 404);
+
+        } catch (\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], 400);
+        }
+
+        return response()->view('resetPass'); 
+    }
     public function reset(Request $request, $token) {
         try {
             if (!$data = PasswordResets::where('token', $token)->first())
@@ -69,9 +102,7 @@ class ForgotPasswordController extends Controller
             ], 400);
         }
 
-        return response([
-            'message' => 'Password reset successful'
-        ]);
+        return response()->view('passChanged', ['name' => $user->name]);
     }
 }
 
