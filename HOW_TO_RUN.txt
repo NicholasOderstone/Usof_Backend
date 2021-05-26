@@ -1,0 +1,3 @@
+chmod +x ./RUN_IT.sh
+./RUN_IT.sh
+php artisan serve

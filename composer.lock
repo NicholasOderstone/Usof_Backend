@@ -213,16 +213,16 @@
         },
         {
             "name": "composer/package-versions-deprecated",
-            "version": "1.11.99.1",
+            "version": "1.11.99.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/package-versions-deprecated.git",
-                "reference": "7413f0b55a051e89485c5cb9f765fe24bb02a7b6"
+                "reference": "c6522afe5540d5fc46675043d3ed5a45a740b27c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/7413f0b55a051e89485c5cb9f765fe24bb02a7b6",
-                "reference": "7413f0b55a051e89485c5cb9f765fe24bb02a7b6",
+                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/c6522afe5540d5fc46675043d3ed5a45a740b27c",
+                "reference": "c6522afe5540d5fc46675043d3ed5a45a740b27c",
                 "shasum": ""
             },
             "require": {
@@ -266,7 +266,7 @@
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
             "support": {
                 "issues": "https://github.com/composer/package-versions-deprecated/issues",
-                "source": "https://github.com/composer/package-versions-deprecated/tree/1.11.99.1"
+                "source": "https://github.com/composer/package-versions-deprecated/tree/1.11.99.2"
             },
             "funding": [
                 {
@@ -282,7 +282,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-11T10:22:58+00:00"
+            "time": "2021-05-24T07:46:03+00:00"
         },
         {
             "name": "creativeorange/gravatar",
@@ -349,16 +349,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "1.11.2",
+            "version": "1.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "9c53086695937c50c47936ed86d96150ffbcf60d"
+                "reference": "3bb5588cec00a0268829cc4a518490df6741af9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/9c53086695937c50c47936ed86d96150ffbcf60d",
-                "reference": "9c53086695937c50c47936ed86d96150ffbcf60d",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/3bb5588cec00a0268829cc4a518490df6741af9d",
+                "reference": "3bb5588cec00a0268829cc4a518490df6741af9d",
                 "shasum": ""
             },
             "require": {
@@ -428,7 +428,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/cache/issues",
-                "source": "https://github.com/doctrine/cache/tree/1.11.2"
+                "source": "https://github.com/doctrine/cache/tree/1.11.3"
             },
             "funding": [
                 {
@@ -444,7 +444,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-20T14:57:29+00:00"
+            "time": "2021-05-25T09:01:55+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -1538,16 +1538,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.42.1",
+            "version": "v8.43.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "41ec4897a70eb8729cf0ff34a8354413c54e42a6"
+                "reference": "3ec63771a07e251f4fb6c7ef2411a79a314bba65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/41ec4897a70eb8729cf0ff34a8354413c54e42a6",
-                "reference": "41ec4897a70eb8729cf0ff34a8354413c54e42a6",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3ec63771a07e251f4fb6c7ef2411a79a314bba65",
+                "reference": "3ec63771a07e251f4fb6c7ef2411a79a314bba65",
                 "shasum": ""
             },
             "require": {
@@ -1702,20 +1702,20 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-05-19T13:03:18+00:00"
+            "time": "2021-05-25T13:06:44+00:00"
         },
         {
             "name": "laravel/sanctum",
-            "version": "v2.11.0",
+            "version": "v2.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "3ed8f60dafef026acc21733366a08746a7bd176e"
+                "reference": "5de9d0ced8ae50dacb00c16077115f32e94d13f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/3ed8f60dafef026acc21733366a08746a7bd176e",
-                "reference": "3ed8f60dafef026acc21733366a08746a7bd176e",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/5de9d0ced8ae50dacb00c16077115f32e94d13f2",
+                "reference": "5de9d0ced8ae50dacb00c16077115f32e94d13f2",
                 "shasum": ""
             },
             "require": {
@@ -1766,7 +1766,7 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
-            "time": "2021-05-11T21:03:57+00:00"
+            "time": "2021-05-25T16:43:06+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -6297,16 +6297,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "5d23474cd411b07f46980d05f9c38e7dc0d17460"
+                "reference": "d1f703d73f782af5427697cdc5023395cd341963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/5d23474cd411b07f46980d05f9c38e7dc0d17460",
-                "reference": "5d23474cd411b07f46980d05f9c38e7dc0d17460",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/d1f703d73f782af5427697cdc5023395cd341963",
+                "reference": "d1f703d73f782af5427697cdc5023395cd341963",
                 "shasum": ""
             },
             "require": {
@@ -6353,7 +6353,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-05-18T15:44:02+00:00"
+            "time": "2021-05-25T16:41:13+00:00"
         },
         {
             "name": "myclabs/deep-copy",

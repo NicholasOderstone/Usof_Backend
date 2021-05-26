@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Like;
+use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -42,8 +44,22 @@ class LikeController extends Controller
     public function StoreLikePost(Request $request, $post_id)
     {
 
-        \App\Models\Post::findOrFail($post_id);
-
+        if (Post::find($post_id) == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such post. Post with id $post_id not found."
+                ]
+            ]); 
+        }
+        if ($like = Like::where('entity', 'post')
+                        ->where('entity_id', $post_id)
+                        ->where('user_id', auth()->user()->id)
+                        ->first()) {
+                            return response()->json([
+                                "error" => [
+                                    "message"  => "Like already exists"
+                                ]]); 
+                        }
         $data = [
             'user_id' => auth()->user()->id,
             'entity' => 'post',
@@ -57,7 +73,24 @@ class LikeController extends Controller
     public function StoreLikeComment(Request $request, $comment_id)
     {
 
-        \App\Models\Comment::findOrFail($comment_id);
+        if (Comment::find($comment_id) == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such comment. Comment with id $comment_id not found."
+                ]
+            ], 404); 
+        }
+
+        if ($like = Like::where('entity', 'comment')
+                        ->where('entity_id', $comment_id)
+                        ->where('user_id', auth()->user()->id)
+                        ->first()) {
+                            return response()->json([
+                                "error" => [
+                                    "message"  => "Like already exists"
+                                ], 
+                                "code" => 404]); 
+                        }
 
         $data = [
             'user_id' => auth()->user()->id,
@@ -80,7 +113,7 @@ class LikeController extends Controller
         $like = Like::where('entity', 'post')
                     ->where('entity_id', $post_id)
                     ->where('user_id', auth()->user()->id)
-                    ->get();
+                    ->first();
         return Like::destroy($like->id);
     }
     
@@ -95,7 +128,7 @@ class LikeController extends Controller
         $like = Like::where('entity', 'comment')
                     ->where('entity_id', $comment_id)
                     ->where('user_id', auth()->user()->id)
-                    ->get();
+                    ->first();
         return Like::destroy($like->id);
     }
 }

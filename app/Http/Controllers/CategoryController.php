@@ -6,6 +6,7 @@ use App\Models\PostCategory;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\QueryFilters\CategoryFilter;
+use App\Http\Resources\CategoryResource;
 class CategoryController extends Controller
 {
     /**
@@ -91,7 +92,7 @@ class CategoryController extends Controller
     {
         if (auth()->user()->is_admin == true) {
 
-            $category = Category::find($id);
+            $category = Category::find($category_id);
 
             if ($category) {
                 $input = $request->all();
@@ -104,7 +105,7 @@ class CategoryController extends Controller
             else {
                 return response()->json([
                     "error" => [
-                        "message"  => "No such category. Category with id $id not found."
+                        "message"  => "No such category. Category with id $category_id not found."
                     ],
                     400]);
             }
@@ -116,11 +117,6 @@ class CategoryController extends Controller
                 ], 
                 403]);
         }
-
-        return response()->json([
-            "error" => [
-                "message"  => "Access denied. You do not have permission for this action."
-            ]], 403);
     }
 
     /**
@@ -133,15 +129,15 @@ class CategoryController extends Controller
     {
         if (auth()->user()->is_admin == true) {
 
-            $category = Category::find($id);
+            $category = Category::find($category_id);
 
             if ($category) {
-                return Category::destroy($id);
+                return Category::destroy($category_id);
             }
             else {
                 return response()->json([
                     "error" => [
-                        "message"  => "No such category. Category with id $id not found."
+                        "message"  => "No such category. Category with id $category_id not found."
                     ],
                     400]);
             }

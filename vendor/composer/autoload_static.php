@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
+class ComposerStaticInit333d13fea66db522cbb4261c934e8bdd
 {
     public static $files = array (
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -607,6 +607,8 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'App\\Http\\Requests\\PostRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PostRequest.php',
         'App\\Http\\Requests\\TagRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TagRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
+        'App\\Http\\Resources\\CategoryResource' => __DIR__ . '/../..' . '/app/Http/Resources/CategoryResource.php',
+        'App\\Http\\Resources\\PostResource' => __DIR__ . '/../..' . '/app/Http/Resources/PostResource.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\Like' => __DIR__ . '/../..' . '/app/Models/Like.php',
@@ -620,6 +622,8 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\QueryFilters\\CategoryFilter' => __DIR__ . '/../..' . '/app/QueryFilters/CategoryFilter.php',
+        'App\\QueryFilters\\PostFilter' => __DIR__ . '/../..' . '/app/QueryFilters/PostFilter.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -2350,6 +2354,7 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'Illuminate\\Contracts\\Validation\\UncompromisedVerifier' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/UncompromisedVerifier.php',
         'Illuminate\\Contracts\\Validation\\ValidatesWhenResolved' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/ValidatesWhenResolved.php',
         'Illuminate\\Contracts\\Validation\\Validator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/Validator.php',
+        'Illuminate\\Contracts\\Validation\\ValidatorAwareRule' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/ValidatorAwareRule.php',
         'Illuminate\\Contracts\\View\\Engine' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/View/Engine.php',
         'Illuminate\\Contracts\\View\\Factory' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/View/Factory.php',
         'Illuminate\\Contracts\\View\\View' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/View/View.php',
@@ -2466,6 +2471,7 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'Illuminate\\Database\\Events\\TransactionCommitted' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Events/TransactionCommitted.php',
         'Illuminate\\Database\\Events\\TransactionRolledBack' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Events/TransactionRolledBack.php',
         'Illuminate\\Database\\Grammar' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Grammar.php',
+        'Illuminate\\Database\\LazyLoadingViolationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/LazyLoadingViolationException.php',
         'Illuminate\\Database\\MigrationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/MigrationServiceProvider.php',
         'Illuminate\\Database\\Migrations\\DatabaseMigrationRepository' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Migrations/DatabaseMigrationRepository.php',
         'Illuminate\\Database\\Migrations\\Migration' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Migrations/Migration.php',
@@ -5750,10 +5756,10 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit333d13fea66db522cbb4261c934e8bdd::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit333d13fea66db522cbb4261c934e8bdd::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit333d13fea66db522cbb4261c934e8bdd::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit333d13fea66db522cbb4261c934e8bdd::$classMap;
 
         }, null, ClassLoader::class);
     }

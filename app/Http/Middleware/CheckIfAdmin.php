@@ -28,8 +28,8 @@ class CheckIfAdmin
      */
     private function checkIfUserIsAdmin($user)
     {
-        return (auth()->user()->is_admin == 1);
-        // return true;
+        // return (auth()->user()->is_admin == 1);
+        return $user->is_admin;
     }
 
     /**

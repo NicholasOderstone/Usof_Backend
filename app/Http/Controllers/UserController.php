@@ -106,7 +106,7 @@ class UserController extends Controller
                 ]
             ], 404); 
         }
-        if (auth()->user()->is_admin == true || auth()->user()->name == auth()->user()->name) {
+        if (auth()->user()->is_admin == true || auth()->user()->name == $user_info->name) {
             $input = $request->all();
             $input = $request->validate([
                 'name' => 'string|unique:users',
@@ -123,7 +123,7 @@ class UserController extends Controller
                 ]
             ], 403);
         }
-        
+        return $user_info;
     }
 
     public function uploadAvatar(Request $request) {

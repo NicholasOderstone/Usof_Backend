@@ -9,7 +9,7 @@ class PostCategory extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
-
+    public $timestamps = false;
     protected $fillable = [
         'category_id',
         'post_id'

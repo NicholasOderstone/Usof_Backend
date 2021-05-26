@@ -38,7 +38,13 @@ class CommentController extends Controller
             'content' => 'required|string|max:512',
         ]);
         
-        Post::findOrFail($post_id);
+        if (Post::find($post_id) == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such post. Post with id $post_id not found."
+                ]
+            ], 404); 
+        }
 
         $data = [
             'user_id' => auth()->user()->id,
@@ -50,7 +56,13 @@ class CommentController extends Controller
         
     }
     static public function getAllUserComments($user_id) {
-        User::findOrFail($user_id);
+        if (User::find($user_id) == null) {
+            return response()->json([
+                "error" => [
+                    "message"  => "No such user. Post with id $user_id not found."
+                ]
+            ], 404); 
+        }
         
         return Comment::where('user_id', $user_id)->get();
     }
@@ -108,13 +120,9 @@ class CommentController extends Controller
                 403]);
         }
         $input = $request->all();
-        $input = $request->validate([
-            'name' => 'string|unique:users',
-            'email' => 'string|unique:users',
-        ]);
         
-        $user_info->fill($input)->save();
-        return $user_info;
+        $comment->fill($input)->save();
+        return $comment;
     }
 
     /**

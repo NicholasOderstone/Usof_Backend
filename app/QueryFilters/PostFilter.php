@@ -14,8 +14,11 @@ class PostFilter extends QueryFilter
 
     public function user(string $value)
     {
-        $id = DB::table('users')->where('name', $value)->first()->id;
-        return $this->where('user_id', $id);
+        $user = DB::table('users')->where('name', $value)->first();
+        if ($user) {
+            return $this->where('user_id', $user->id);
+        }
+        
     }
 
     public function category(string $value)
@@ -24,8 +27,11 @@ class PostFilter extends QueryFilter
         $category_ids = array();
         try {
             for ($i = 0; $i < count($categories); $i++) {
-                $id = DB::table('categories')->where('title', $categories[$i])->first()->id;
-                array_push($category_ids, (int)$id);
+                $user = DB::table('categories')->where('title', $categories[$i])->first();
+                if ($user) {
+                    array_push($category_ids, (int)$user->id);
+                }
+                
             }
         } catch (\ErrorException $e) {
             return $this;
