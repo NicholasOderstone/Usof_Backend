@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PostCategory;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use App\QueryFilters\CategoryFilter;
 class CategoryController extends Controller
 {
     /**
@@ -13,9 +13,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CategoryFilter $filter)
     {
-        return Category::all();
+        $categories = Category::filter($filter)->get();
+        return CategoryResource::collection($categories);
     }
 
     public function getAllPosts($category_id) {

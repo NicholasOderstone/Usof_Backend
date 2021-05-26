@@ -85,6 +85,8 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Spatie\\LaravelPackageTools\\Database\\Factories\\' => 46,
+            'Spatie\\LaravelPackageTools\\' => 27,
         ),
         'R' => 
         array (
@@ -127,6 +129,10 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
             'Laracasts\\Generators\\' => 21,
+        ),
+        'K' => 
+        array (
+            'Kblais\\QueryFilter\\' => 19,
         ),
         'I' => 
         array (
@@ -317,6 +323,14 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Spatie\\LaravelPackageTools\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-package-tools/database/factories',
+        ),
+        'Spatie\\LaravelPackageTools\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-package-tools/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -412,6 +426,10 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'Laracasts\\Generators\\' => 
         array (
             0 => __DIR__ . '/..' . '/laracasts/generators/src',
+        ),
+        'Kblais\\QueryFilter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kblais/query-filter/src',
         ),
         'Illuminate\\Support\\' => 
         array (
@@ -557,8 +575,21 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\CategoryCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryCrudController.php',
+        'App\\Http\\Controllers\\Admin\\CommentCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CommentCrudController.php',
+        'App\\Http\\Controllers\\Admin\\LikeCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LikeCrudController.php',
+        'App\\Http\\Controllers\\Admin\\PostCategoryCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PostCategoryCrudController.php',
+        'App\\Http\\Controllers\\Admin\\PostCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PostCrudController.php',
         'App\\Http\\Controllers\\Admin\\TagCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TagCrudController.php',
+        'App\\Http\\Controllers\\Admin\\UserCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserCrudController.php',
+        'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
+        'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
+        'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/ForgotPasswordController.php',
+        'App\\Http\\Controllers\\LikeController' => __DIR__ . '/../..' . '/app/Http/Controllers/LikeController.php',
+        'App\\Http\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckIfAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckIfAdmin.php',
@@ -569,7 +600,19 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\CategoryRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CategoryRequest.php',
+        'App\\Http\\Requests\\CommentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CommentRequest.php',
+        'App\\Http\\Requests\\LikeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LikeRequest.php',
+        'App\\Http\\Requests\\PostCategoryRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PostCategoryRequest.php',
+        'App\\Http\\Requests\\PostRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PostRequest.php',
         'App\\Http\\Requests\\TagRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TagRequest.php',
+        'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
+        'App\\Models\\Like' => __DIR__ . '/../..' . '/app/Models/Like.php',
+        'App\\Models\\PasswordResets' => __DIR__ . '/../..' . '/app/Models/PasswordResets.php',
+        'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
+        'App\\Models\\PostCategory' => __DIR__ . '/../..' . '/app/Models/PostCategory.php',
         'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -791,8 +834,15 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'Database\\Factories\\CategoryFactory' => __DIR__ . '/../..' . '/database/factories/CategoryFactory.php',
+        'Database\\Factories\\CommentFactory' => __DIR__ . '/../..' . '/database/factories/CommentFactory.php',
+        'Database\\Factories\\LikeFactory' => __DIR__ . '/../..' . '/database/factories/LikeFactory.php',
+        'Database\\Factories\\PostCategoryFactory' => __DIR__ . '/../..' . '/database/factories/PostCategoryFactory.php',
+        'Database\\Factories\\PostFactory' => __DIR__ . '/../..' . '/database/factories/PostFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\PostTableSeeder' => __DIR__ . '/../..' . '/database/seeders/PostTableSeeder.php',
+        'Database\\Seeders\\UserTableSeeder' => __DIR__ . '/../..' . '/database/seeders/UserTableSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
@@ -3027,6 +3077,10 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Kblais\\QueryFilter\\Commands\\QueryFilterMakeCommand' => __DIR__ . '/..' . '/kblais/query-filter/src/Commands/QueryFilterMakeCommand.php',
+        'Kblais\\QueryFilter\\Filterable' => __DIR__ . '/..' . '/kblais/query-filter/src/Filterable.php',
+        'Kblais\\QueryFilter\\QueryFilter' => __DIR__ . '/..' . '/kblais/query-filter/src/QueryFilter.php',
+        'Kblais\\QueryFilter\\QueryFilterServiceProvider' => __DIR__ . '/..' . '/kblais/query-filter/src/QueryFilterServiceProvider.php',
         'Laracasts\\Generators\\Commands\\MigrationMakeCommand' => __DIR__ . '/..' . '/laracasts/generators/src/Commands/MigrationMakeCommand.php',
         'Laracasts\\Generators\\Commands\\PivotMigrationMakeCommand' => __DIR__ . '/..' . '/laracasts/generators/src/Commands/PivotMigrationMakeCommand.php',
         'Laracasts\\Generators\\GeneratorException' => __DIR__ . '/..' . '/laracasts/generators/src/GeneratorException.php',
@@ -4826,6 +4880,9 @@ class ComposerStaticInitc7d1a507b2d985c650d7119e21abd3c5
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\LaravelPackageTools\\Exceptions\\InvalidPackage' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Exceptions/InvalidPackage.php',
+        'Spatie\\LaravelPackageTools\\Package' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Package.php',
+        'Spatie\\LaravelPackageTools\\PackageServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/PackageServiceProvider.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Color' => __DIR__ . '/..' . '/symfony/console/Color.php',

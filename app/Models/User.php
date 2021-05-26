@@ -8,12 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Kblais\QueryFilter\Filterable;
 
 class User extends Authenticatable
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory, Notifiable, HasApiTokens, CanResetPassword;
-
+    use Filterable;
     /**
      * The attributes that are mass assignable.
      *

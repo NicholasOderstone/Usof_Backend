@@ -2020,6 +2020,65 @@
             "install-path": "../hamcrest/hamcrest-php"
         },
         {
+            "name": "kblais/query-filter",
+            "version": "v2.0.1",
+            "version_normalized": "2.0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kblais/query-filter.git",
+                "reference": "0363dc989615bd97580fa988d1907eca58f3a0ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kblais/query-filter/zipball/0363dc989615bd97580fa988d1907eca58f3a0ba",
+                "reference": "0363dc989615bd97580fa988d1907eca58f3a0ba",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.29|^8.0",
+                "illuminate/http": "^7.29|^8.0",
+                "illuminate/support": "^7.29|^8.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.15",
+                "nunomaduro/larastan": "^0.6.12",
+                "orchestra/testbench": "^5.0|^6.0"
+            },
+            "time": "2021-04-29T15:39:24+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kblais\\QueryFilter\\QueryFilterServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Kblais\\QueryFilter\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Killian Blais",
+                    "email": "contact@killianblais.fr"
+                }
+            ],
+            "description": "Easily create filters for your Eloquent models.",
+            "support": {
+                "issues": "https://github.com/kblais/query-filter/issues",
+                "source": "https://github.com/kblais/query-filter/tree/v2.0.1"
+            },
+            "install-path": "../kblais/query-filter"
+        },
+        {
             "name": "laracasts/generators",
             "version": "2.0.0",
             "version_normalized": "2.0.0.0",
@@ -5835,6 +5894,69 @@
             "install-path": "../sebastian/version"
         },
         {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.9.0",
+            "version_normalized": "1.9.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "cf4c4cec220575e2864c6082842d76822421f1b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/cf4c4cec220575e2864c6082842d76822421f1b1",
+                "reference": "cf4c4cec220575e2864c6082842d76822421f1b1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0",
+                "mockery/mockery": "^1.4",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^9.3",
+                "spatie/test-time": "^1.2"
+            },
+            "time": "2021-05-23T15:12:33+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src",
+                    "Spatie\\LaravelPackageTools\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.9.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "install-path": "../spatie/laravel-package-tools"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.2.7",
             "version_normalized": "6.2.7.0",
@@ -8503,10 +8625,8 @@
         "facade/ignition-contracts",
         "fakerphp/faker",
         "filp/whoops",
-        "hamcrest/hamcrest-php",
         "laracasts/generators",
         "laravel/sail",
-        "mockery/mockery",
         "myclabs/deep-copy",
         "nunomaduro/collision",
         "phar-io/manifest",

@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '59e9fe196f5147c508a75ac3f706dc308762f025',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -485,6 +485,15 @@
         0 => 'v8.42.1',
       ),
     ),
+    'kblais/query-filter' => 
+    array (
+      'pretty_version' => 'v2.0.1',
+      'version' => '2.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0363dc989615bd97580fa988d1907eca58f3a0ba',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -512,12 +521,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '59e9fe196f5147c508a75ac3f706dc308762f025',
     ),
     'laravel/sail' => 
     array (
@@ -1056,6 +1065,15 @@
       array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
+    ),
+    'spatie/laravel-package-tools' => 
+    array (
+      'pretty_version' => '1.9.0',
+      'version' => '1.9.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'cf4c4cec220575e2864c6082842d76822421f1b1',
     ),
     'swiftmailer/swiftmailer' => 
     array (

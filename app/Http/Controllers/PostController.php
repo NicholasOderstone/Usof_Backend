@@ -6,7 +6,8 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Http\Request;
-
+use App\QueryFilters\PostFilter;
+use App\Http\Resources\PostResource;
 class PostController extends Controller
 {
     /**
@@ -14,14 +15,16 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PostFilter $filter)
     {
-        $posts = Post::all();
-        $result = array();
-        foreach ($posts as $post) {
-            $result[] = $this->show($post->id);
-        }
-        return $result;
+        $posts = Post::filter($filter)->get();
+        return PostResource::collection($posts);
+        // $posts = Post::all();
+        // $result = array();
+        // foreach ($posts as $post) {
+        //     $result[] = $this->show($post->id);
+        // }
+        // return $result;
     }
 
     static public function getAllUserPosts($user_id) {
@@ -63,7 +66,7 @@ class PostController extends Controller
         return $this->show($new_post->id);
     }
 
-    private function getPostRating($id) {
+    static public function getPostRating($id) {
         return LikeController::PostRating($id);
     }
 
@@ -75,7 +78,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post_info = Comment::find($id);
+        $post_info = Post::find($id);
 
 
         if ($post_info == null) {
@@ -84,11 +87,9 @@ class PostController extends Controller
                     "message"  => "No such post. Post with id $id not found."
                 ]
             ], 404); 
-        }
+        };
 
-        $post_info->rating = $this->getPostRating($id);
-        $post_info->categories = CategoryController::getAllPostCategories($id);
-        return $post_info;
+        return new PostResource($post_info);
     }
 
     /**
